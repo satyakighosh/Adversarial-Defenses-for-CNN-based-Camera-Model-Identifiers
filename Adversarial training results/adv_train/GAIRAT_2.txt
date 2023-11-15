@@ -1,0 +1,351 @@
+2%|██▉                                                                                                                        | 4046848/170498071 [00:11<07:51, 353080.61it/s]
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "GAIRAT.py", line 351, in <module>
+    train_robust_loss, lr = train(epoch, model, train_loader, optimizer, Lambda)
+  File "GAIRAT.py", line 189, in train
+    for batch_idx, (data, target) in loop:
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 363, in __next__
+    data = self._next_data()
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 989, in _next_data
+    return self._process_data(data)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1014, in _process_data
+    data.reraise()
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/_utils.py", line 395, in reraise
+    raise self.exc_type(msg)
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 185, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "GAIRAT.py", line 110, in __getitem__
+    X = self.transform(X)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/transforms/transforms.py", line 61, in __call__
+    img = t(img)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/transforms/transforms.py", line 511, in __call__
+    img = F.pad(img, self.padding, self.fill, self.padding_mode)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/transforms/functional.py", line 378, in pad
+    raise TypeError('img should be PIL Image. Got {}'.format(type(img)))
+TypeError: img should be PIL Image. Got <class 'numpy.ndarray'>
+
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+Epoch [0 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:48:00<00:00,  3.46s/it, loss=1.84]
+/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Epoch: [0 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.24 | PGD20 Test Acc 0.27 |
+
+Epoch [1 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:07<00:00,  2.69s/it, loss=1.58]
+Epoch: [1 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.22 | PGD20 Test Acc 0.27 |
+
+Epoch [2 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:38<00:00,  2.71s/it, loss=1.57]
+Epoch: [2 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.22 | PGD20 Test Acc 0.26 |
+
+Epoch [3 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:33:25<00:00,  2.99s/it, loss=1.56]
+Epoch: [3 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.24 | PGD20 Test Acc 0.29 |
+
+Epoch [4 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:58:20<00:00,  3.79s/it, loss=1.55]
+Epoch: [4 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.28 | PGD20 Test Acc 0.31 |
+
+Epoch [5 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:07:55<00:00,  4.09s/it, loss=1.54]
+Epoch: [5 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.26 |
+
+Epoch [6 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:59:57<00:00,  3.84s/it, loss=1.54]
+Epoch: [6 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.28 | PGD20 Test Acc 0.32 |
+
+Epoch [7 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:00:36<00:00,  3.86s/it, loss=1.53]
+Epoch: [7 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.24 | PGD20 Test Acc 0.29 |
+
+Epoch [8 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:54:30<00:00,  3.66s/it, loss=1.53]
+Epoch: [8 | 120] | Learning Rate: 0.100000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.33 |
+
+Epoch [9 / 120]:  16%|████████████████▌                                                                                         | 293/1875 [19:23<1:45:24,  4.00s/it, loss=1.53]Epoch [9 / 120]:  16%|████████████████▌                                                                                         | 293/1875 [19:25<1:44:55,  3.98s/it, loss=1.53]
+Traceback (most recent call last):
+  File "GAIRAT.py", line 363, in <module>
+    train_robust_loss, lr = train(epoch, model, train_loader, optimizer, Lambda)
+  File "GAIRAT.py", line 198, in train
+    x_adv, Kappa = attack.GA_PGD(model,data,target,args.epsilon,args.step_size,args.num_steps,loss_fn="cent",category="Madry",rand_init=True)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 35, in GA_PGD
+    if predict[p] == target[p]:
+KeyboardInterrupt
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+Epoch [0 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:09:06<00:00,  4.13s/it, loss=1.8]
+/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Epoch: [0 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.23 | PGD20 Test Acc 0.28 |
+
+Epoch [1 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:08:17<00:00,  4.11s/it, loss=1.57]
+Epoch: [1 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.23 | PGD20 Test Acc 0.28 |
+
+Epoch [2 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:12:49<00:00,  4.25s/it, loss=1.55]
+Epoch: [2 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.29 |
+
+Epoch [3 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:04:50<00:00,  4.00s/it, loss=1.54]
+Epoch: [3 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.30 |
+
+Epoch [4 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:05:32<00:00,  4.02s/it, loss=1.53]
+Epoch: [4 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.30 |
+
+Epoch [5 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:25:07<00:00,  2.72s/it, loss=1.52]
+Epoch: [5 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.32 |
+
+Epoch [6 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:27:39<00:00,  2.81s/it, loss=1.51]
+Epoch: [6 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.31 |
+
+Epoch [7 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:20:45<00:00,  2.58s/it, loss=1.51]
+Epoch: [7 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.33 |
+
+Epoch [8 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:31:34<00:00,  2.93s/it, loss=1.5]
+Epoch: [8 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.31 |
+
+Epoch [9 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:47:19<00:00,  3.43s/it, loss=1.5]
+Epoch: [9 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.35 |
+
+Epoch [10 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:52:09<00:00,  3.59s/it, loss=1.49]
+Epoch: [10 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.34 |
+
+Epoch [11 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:54:39<00:00,  3.67s/it, loss=1.49]
+Epoch: [11 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.36 |
+
+Epoch [12 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:47:37<00:00,  3.44s/it, loss=1.48]
+Epoch: [12 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.35 |
+
+Epoch [13 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:44:14<00:00,  3.34s/it, loss=1.48]
+Epoch: [13 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.34 |
+
+Epoch [14 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:44:10<00:00,  3.33s/it, loss=1.48]
+Epoch: [14 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.36 |
+
+Epoch [15 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:45:28<00:00,  3.38s/it, loss=1.47]
+Epoch: [15 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.34 |
+
+Epoch [16 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:44:57<00:00,  3.36s/it, loss=1.47]
+Epoch: [16 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.24 | PGD20 Test Acc 0.35 |
+
+Epoch [17 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:38:33<00:00,  3.15s/it, loss=1.46]
+Epoch: [17 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.36 |
+
+Epoch [18 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:25:14<00:00,  2.73s/it, loss=1.46]
+Epoch: [18 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.33 |
+
+Epoch [19 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:35<00:00,  2.71s/it, loss=1.46]
+Epoch: [19 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.35 |
+
+Epoch [20 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:00<00:00,  2.69s/it, loss=1.46]
+Epoch: [20 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.32 |
+
+Epoch [21 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:23:47<00:00,  2.68s/it, loss=1.45]
+Epoch: [21 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.32 |
+
+Epoch [22 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:35<00:00,  2.71s/it, loss=1.45]
+Epoch: [22 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.35 |
+
+Epoch [23 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:23:36<00:00,  2.68s/it, loss=1.45]
+Epoch: [23 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.34 |
+
+Epoch [24 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:24:06<00:00,  2.69s/it, loss=1.45]
+Epoch: [24 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.38 |
+
+Epoch [25 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:08:36<00:00,  2.20s/it, loss=1.45]
+Epoch: [25 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.36 |
+
+Epoch [26 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [50:22<00:00,  1.61s/it, loss=1.45]
+Epoch: [26 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.38 |
+
+Epoch [27 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [50:13<00:00,  1.61s/it, loss=1.45]
+Epoch: [27 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.24 | PGD20 Test Acc 0.36 |
+
+Epoch [28 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [50:27<00:00,  1.61s/it, loss=1.45]
+Epoch: [28 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.36 |
+
+Epoch [29 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [50:58<00:00,  1.63s/it, loss=1.45]
+Epoch: [29 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.35 |
+
+Epoch [30 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [53:14<00:00,  1.70s/it, loss=1.45]
+Epoch: [30 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.36 |
+
+Epoch [31 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [53:49<00:00,  1.72s/it, loss=1.44]
+Epoch: [31 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.38 |
+
+Epoch [32 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:11:23<00:00,  2.28s/it, loss=1.44]
+Epoch: [32 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.31 |
+
+Epoch [33 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:41:38<00:00,  3.25s/it, loss=1.44]
+Epoch: [33 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.36 |
+
+Epoch [34 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:45:34<00:00,  3.38s/it, loss=1.44]
+Epoch: [34 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.33 |
+
+Epoch [35 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:45:37<00:00,  3.38s/it, loss=1.44]
+Epoch: [35 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.36 |
+
+Epoch [36 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:37:28<00:00,  3.12s/it, loss=1.44]
+Epoch: [36 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.28 | PGD20 Test Acc 0.36 |
+
+Epoch [37 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:38:05<00:00,  3.14s/it, loss=1.44]
+Epoch: [37 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.36 |
+
+Epoch [38 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:37:16<00:00,  3.11s/it, loss=1.44]
+Epoch: [38 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.37 |
+
+Epoch [39 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:37:19<00:00,  3.11s/it, loss=1.43]
+Epoch: [39 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.35 |
+
+Epoch [40 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:03:08<00:00,  2.02s/it, loss=1.43]
+Epoch: [40 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.32 |
+
+Epoch [41 / 120]: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [56:20<00:00,  1.80s/it, loss=1.44]
+Epoch: [41 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.29 | PGD20 Test Acc 0.35 |
+
+Epoch [42 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:23:47<00:00,  2.68s/it, loss=1.44]
+Epoch: [42 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.36 |
+
+Epoch [43 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:44:45<00:00,  3.35s/it, loss=1.44]
+Epoch: [43 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.36 |
+
+Epoch [44 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:31:43<00:00,  2.94s/it, loss=1.44]
+Epoch: [44 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.37 |
+
+Epoch [45 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:44:36<00:00,  3.35s/it, loss=1.44]
+Epoch: [45 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.37 |
+
+Epoch [46 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [1:32:42<00:00,  2.97s/it, loss=1.44]
+Epoch: [46 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.35 |
+
+Epoch [47 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:13:25<00:00,  4.27s/it, loss=1.43]
+Epoch: [47 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.25 | PGD20 Test Acc 0.30 |
+
+Epoch [48 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:10:22<00:00,  4.17s/it, loss=1.43]
+Epoch: [48 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.27 | PGD20 Test Acc 0.37 |
+
+Epoch [49 / 120]: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:59:11<00:00,  5.73s/it, loss=1.44]
+Epoch: [49 | 120] | Learning Rate: 0.040000 | Natural Test Acc 0.26 | PGD20 Test Acc 0.38 |
+
+Epoch [50 / 120]:  85%|████████████████████████████████████████████████████████████████████████████████████████▏               | 1591/1875 [2:22:49<23:09,  4.89s/it, loss=1.43]Epoch [50 / 120]:  85%|████████████████████████████████████████████████████████████████████████████████████████▏               | 1591/1875 [2:22:49<25:29,  5.39s/it, loss=1.43]
+Traceback (most recent call last):
+  File "GAIRAT.py", line 363, in <module>
+    
+  File "GAIRAT.py", line 198, in train
+    return args.lr_max
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 27, in GA_PGD
+    x_adv = data.detach() + torch.from_numpy(np.random.uniform(-epsilon, epsilon, data.shape)).float().cuda() if rand_init else data.detach()
+KeyboardInterrupt
+^C
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+Epoch [0 / 120]:  12%|█████████████                                                                                             | 231/1875 [14:13<2:03:25,  4.50s/it, loss=9.25]Epoch [0 / 120]:  12%|█████████████                                                                                             | 231/1875 [14:15<1:41:26,  3.70s/it, loss=9.25]
+Traceback (most recent call last):
+  File "GAIRAT.py", line 396, in <module>
+    train_robust_loss, lr = train(epoch, model, train_loader, optimizer, Lambda)
+  File "GAIRAT.py", line 231, in train
+    x_adv, Kappa = attack.GA_PGD(model,data,target,args.epsilon,args.step_size,args.num_steps,loss_fn="cent",category="Madry",rand_init=True)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 35, in GA_PGD
+    if predict[p] == target[p]:
+KeyboardInterrupt
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+Epoch [0 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [3:43:30<00:00,  7.15s/it, loss=1.76]
+/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Traceback (most recent call last):
+  File "GAIRAT.py", line 400, in <module>
+    _, test_pgd20_acc = attack.eval_robust(model, test_loader, perturb_steps=20, epsilon=0.031, step_size=0.031 / 4,loss_fn="cent", category="Madry", random=True)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 77, in eval_robust
+    x_adv, _ = GA_PGD(model,data,target,epsilon,step_size,perturb_steps,loss_fn,category,rand_init=random)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 31, in GA_PGD
+    output = model(x_adv)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/parallel/data_parallel.py", line 153, in forward
+    return self.module(*inputs[0], **kwargs[0])
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/models/densenet.py", line 192, in forward
+    features = self.features(x)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/container.py", line 117, in forward
+    input = module(input)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/models/densenet.py", line 111, in forward
+    new_features = layer(features)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torchvision/models/densenet.py", line 86, in forward
+    new_features = self.conv2(self.relu2(self.norm2(bottleneck_output)))
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/module.py", line 722, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/modules/batchnorm.py", line 136, in forward
+    self.weight, self.bias, bn_training, exponential_average_factor, self.eps)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/functional.py", line 2016, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 31.75 GiB total capacity; 6.22 GiB already allocated; 29.75 MiB free; 6.42 GiB reserved in total by PyTorch)
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ CUDA_VISIBLE_DEVICES='0', python GAIRAT.py --Lambda 'inf' --net 'densenet121' --dataset 'vision'
+==> GAIRAT
+  0%|                                                                                                                                                  | 0/1875 [00:00<?, ?it/s]/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+Epoch [0 / 120]: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 1875/1875 [2:26:22<00:00,  4.68s/it, loss=1.75]
+/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Traceback (most recent call last):
+  File "GAIRAT.py", line 400, in <module>
+    _, test_pgd20_acc = attack.eval_robust(model, test_loader, perturb_steps=20, epsilon=0.031, step_size=0.031 / 4,loss_fn="cent", category="Madry", random=True)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 77, in eval_robust
+    x_adv, _ = GA_PGD(model,data,target,epsilon,step_size,perturb_steps,loss_fn,category,rand_init=random)
+  File "/home/mtech/2020/satyaki_ghosh/codes/GAIRAT/Geometry-aware-Instance-reweighted-Adversarial-Training/attack_generator.py", line 46, in GA_PGD
+    loss_adv.backward()
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/tensor.py", line 185, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/autograd/__init__.py", line 127, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: CUDA out of memory. Tried to allocate 1.13 GiB (GPU 0; 31.75 GiB total capacity; 6.87 GiB already allocated; 1.15 GiB free; 7.97 GiB reserved in total by PyTorch)
+Exception raised from malloc at /pytorch/c10/cuda/CUDACachingAllocator.cpp:272 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x42 (0x7f4ae04cf1e2 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x1e64b (0x7f4ae072564b in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libc10_cuda.so)
+frame #2: <unknown function> + 0x1f464 (0x7f4ae0726464 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libc10_cuda.so)
+frame #3: c10::cuda::CUDACachingAllocator::raw_alloc(unsigned long) + 0x5e (0x7f4ae071f8de in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libc10_cuda.so)
+frame #4: <unknown function> + 0xec0586 (0x7f4ae17f8586 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #5: <unknown function> + 0xec506c (0x7f4ae17fd06c in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #6: <unknown function> + 0xebda3a (0x7f4ae17f5a3a in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #7: <unknown function> + 0xebe24e (0x7f4ae17f624e in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #8: <unknown function> + 0xebe910 (0x7f4ae17f6910 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #9: at::native::cudnn_convolution_backward_weight(c10::ArrayRef<long>, at::Tensor const&, at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, long, bool, bool) + 0x49 (0x7f4ae17f6b69 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #10: <unknown function> + 0xf1f53b (0x7f4ae185753b in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xf4f178 (0x7f4ae1887178 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #12: at::cudnn_convolution_backward_weight(c10::ArrayRef<long>, at::Tensor const&, at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, long, bool, bool) + 0x1ad (0x7f4b1c72f2ad in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #13: at::native::cudnn_convolution_backward(at::Tensor const&, at::Tensor const&, at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, long, bool, bool, std::array<bool, 2ul>) + 0x18a (0x7f4ae17f078a in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0xf1f445 (0x7f4ae1857445 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #15: <unknown function> + 0xf4f1d4 (0x7f4ae18871d4 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cuda.so)
+frame #16: at::cudnn_convolution_backward(at::Tensor const&, at::Tensor const&, at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, long, bool, bool, std::array<bool, 2ul>) + 0x1e2 (0x7f4b1c73e242 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x2ec9c62 (0x7f4b1e401c62 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0x2ede224 (0x7f4b1e416224 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #19: at::cudnn_convolution_backward(at::Tensor const&, at::Tensor const&, at::Tensor const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, long, bool, bool, std::array<bool, 2ul>) + 0x1e2 (0x7f4b1c73e242 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #20: torch::autograd::generated::CudnnConvolutionBackward::apply(std::vector<at::Tensor, std::allocator<at::Tensor> >&&) + 0x258 (0x7f4b1e288c38 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #21: <unknown function> + 0x3375bb7 (0x7f4b1e8adbb7 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #22: torch::autograd::Engine::evaluate_function(std::shared_ptr<torch::autograd::GraphTask>&, torch::autograd::Node*, torch::autograd::InputBuffer&, std::shared_ptr<torch::autograd::ReadyQueue> const&) + 0x1400 (0x7f4b1e8a9400 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #23: torch::autograd::Engine::thread_main(std::shared_ptr<torch::autograd::GraphTask> const&) + 0x451 (0x7f4b1e8a9fa1 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #24: torch::autograd::Engine::thread_init(int, std::shared_ptr<torch::autograd::ReadyQueue> const&, bool) + 0x89 (0x7f4b1e8a2119 in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_cpu.so)
+frame #25: torch::autograd::python::PythonEngine::thread_init(int, std::shared_ptr<torch::autograd::ReadyQueue> const&, bool) + 0x4a (0x7f4b2c042dea in /home/mtech/2020/satyaki_ghosh/.conda/envs/venv/lib/python3.7/site-packages/torch/lib/libtorch_python.so)
+frame #26: <unknown function> + 0xc2b23 (0x7f4b2d1a4b23 in /lib64/libstdc++.so.6)
+frame #27: <unknown function> + 0x82de (0x7f4b2f0162de in /lib64/libpthread.so.0)
+frame #28: clone + 0x43 (0x7f4b2ed47133 in /lib64/libc.so.6)
+
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-Instance-reweighted-Adversarial-Training]$ ^C
+(venv) [satyaki_ghosh@eeegpu Geometry-aware-

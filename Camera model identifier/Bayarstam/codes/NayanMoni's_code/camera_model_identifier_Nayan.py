@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Sep 26 09:00:27 2019
+
+@author: nmb
+"""
+
+import numpy as np
+np.random.seed(123)
+import keras
+import os
+import numpy as np
+import random
+import matplotlib.pyplot as plt
+from PIL import Image
+from time import time
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Activation, Flatten
+from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, AveragePooling2D
+from keras.utils import np_utils
+from keras import optimizers
+from keras import initializers
+from keras.constraints import Constraint
+from keras.callbacks import Callback
+from keras.preprocessing.image import ImageDataGenerator
+from keras import backend as K
+from keras.models import model_from_json
+from keras.models import load_model
+from keras.callbacks import EarlyStopping
+from keras.callbacks import ModelCheckpoint
+from keras.callbacks import CSVLogger
+from keras.callbacks import TensorBoard
+from keras.initializers import TruncatedNormal
+keras.backend.set_image_data_format('channels_last')
+
+#DYNAMICALLY GROW THE GPU MEMORY
+from keras.backend.tensorflow_backend import set_session
+import tensorflow as tf
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True      
+sess = tf.Session(config=config)
+set_session(sess) 
+
+#PARAMETERS
+classes = 16
+n_epochs = 175
+batch = 32
+
+
+image_row = 128      #change these when using 64*64 daata
+image_col = 128
+
+#To track the loss history
+class LossHistory(keras.callbacks.Callback):
+    def on_train_begin(self, logs={}):
+        self.losses = []
+
+    def on_batch_end(self, batch, logs={}):
+        self.losses.append(logs.get('loss'))
+
+
+#Function to normalise and prepare univ layer kernel
+def normalise(w):
+	j = int(w.shape[0]/2)
+	for i in range(w.shape[-1]):
+		w[j,j,:,i]= 0
+		wsum = w[:,:,:,i].sum()
+		w[:,:,:,i]/=wsum
+		w[j,j,:,i]=-1
+	return w
+
+class Normalise(Callback):	
+	def on_batch_end(self, batch, logs=None):	
+		total_w = self.model.layers[0].get_weights()
+		w = np.array(total_w[0])
+		bias = np.array(total_w[1])
+		w = normalise(w)
+		self.model.layers[0].set_weights([w, bias])
+
+#Loading Data
+train_datagen = ImageDataGenerator(data_format = 'channels_last', rescale=1.0/255.0) #pixel values are normalized
+Val_datagen =  ImageDataGenerator(data_format = 'channels_last', rescale=1.0/255.0)  #normalized
+#Val_datagen = ImageDataGenerator(data_format ='channels_first')                                                                                                                                                                                                                                                           )
+test_datagen = ImageDataGenerator(data_format = 'channels_last', rescale= 1.0/255.0) #normalized
+#test_datagen = ImageDataGenerator(data_format = 'channels_first',rescale=1./255)
+train_generator = train_datagen.flow_from_directory(
+		'C:\G_channel experiment\G_128_dataset\Train_data',
+		target_size=(image_row, image_col),
+		color_mode = "grayscale",
+		batch_size=batch,
+		class_mode='categorical',shuffle= True, seed=42)
+
+valid_generator = Val_datagen.flow_from_directory(
+		'C:\G_channel experiment\G_128_dataset\Val_data',
+		target_size=(image_row, image_col),
+		color_mode="grayscale",
+		batch_size=batch,
+		class_mode='categorical', shuffle=True, seed=42)
+test_generator = test_datagen.flow_from_directory(
+		'C:\G_channel experiment\G_128_dataset\Test_data',
+		target_size=(image_row, image_col),
+		color_mode="grayscale",
+		batch_size=1,
+		class_mode='categorical')
+#convRes weight init
+
+num_filter=5
+w = np.random.rand(5,5,1,num_filter)             #changing the number of filters change accordingly the last number 
+wgt = normalise(w)
+bias = np.zeros(num_filter)
+                                           #change the number of biases when the number of filters are changed
+
+
+#Architecture
+model = Sequential()
+model.add(Convolution2D(5, (5, 5), input_shape=(image_row,image_col,1))) 			                                      
+#change the number of filters in 3,5,8,10,12
+model.layers[0].set_weights([wgt, bias])
+model.add(Convolution2D(32, (7, 7), strides=(1,1), kernel_initializer=initializers.TruncatedNormal(0.0, 0.05, seed=2019)))           	
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1)))                   			                                          
+model.add(Convolution2D(64, (5, 5), strides = (1,1), kernel_initializer=initializers.TruncatedNormal(0.0, 0.05, seed=2019)))		  	
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
+model.add(Convolution2D(64, (5,5), strides= (1,1), kernel_initializer=initializers.TruncatedNormal(0.0, 0.05, seed=2019)))
+model.add(BatchNormalization())
+model.add(Activation('tanh'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
+model.add(Convolution2D(128, (1, 1), strides = (2,2)))   
+model.add(BatchNormalization())
+model.add(Activation('tanh'))                   
+model.add(Flatten())
+model.add(Dropout(0.5))																
+model.add(Dense(200, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(128, activation= 'relu'))
+model.add(Dense(classes, activation='softmax'))
+model.summary()
+
+#Model
+#model.load_weights('/workspace/nayan/27sept_New/new_experiment/weights-improvement-07-0.92.hdf5')
+sgd= optimizers.SGD(lr=0.0005, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='categorical_crossentropy',optimizer=sgd, metrics=['accuracy'])
+
+#callbacks
+
+filepath="Checkpoints\Experiment_1\weights-improvement-{epoch:02d}-{val_accuracy:.2f}.hdf5"
+#for each experiment create a separate folder for checkpoints
+if not os.path.exists('Checkpoints\Experiment_1'):                                       #change the name of the main directory i.e. Data_Cr
+        os.makedirs('Checkpoints\Experiment_1')
+checkpoint = ModelCheckpoint(filepath , monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
+norm_callback = Normalise()
+history = LossHistory()
+tensorboard = TensorBoard(log_dir='Tensorboard\logs', histogram_freq=0,
+                          write_graph=True, write_images=True)
+csv_logger = CSVLogger('constrained_G_14Nov.log')                                  #change the lof file name
+model.save('constrained_G_14Nov.h5') 
+
+STEP_SIZE_TRAIN=train_generator.n//train_generator.batch_size
+STEP_SIZE_VALID=valid_generator.n//valid_generator.batch_size
+STEP_SIZE_TEST=test_generator.n//test_generator.batch_size   
+                                          
+model.fit_generator(
+		train_generator,
+		callbacks = [norm_callback, csv_logger, history, checkpoint, tensorboard],
+		steps_per_epoch=STEP_SIZE_TRAIN,
+		epochs = n_epochs,
+		validation_data = valid_generator,
+		validation_steps = STEP_SIZE_VALID,
+		verbose = 1 )
+
+#Evaluation
+score = model.evaluate_generator(valid_generator, STEP_SIZE_VALID)
+print('Loss: ', score[0], 'Accuracy:', score[1])
+score_test = model.evaluate_generator(test_generator, STEP_SIZE_TEST)
+print('Test Loss: ', score_test[0], ' Test Accuracy:', score_test[1])
+#Testing
+
+test_generator.reset()
+pred=model.predict_generator(test_generator,steps=STEP_SIZE_TEST,verbose=1)
+
+predicted_class_indices=np.argmax(pred,axis=1)
+
+labels = (train_generator.class_indices)
+labels = dict((v,k) for k,v in labels.items())
+predictions = [labels[k] for k in predicted_class_indices]
+
+
+model.save_weights('constrained_G_14Nov.h5')
+
+
+#Saving
+#model_json = model.to_json()
+#with open("univ_model_30Aprl.json","w") as json_file:
+   #json_file.write(model_json)  
+

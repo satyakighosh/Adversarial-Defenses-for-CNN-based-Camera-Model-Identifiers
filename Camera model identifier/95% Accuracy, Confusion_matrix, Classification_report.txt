@@ -1,0 +1,40 @@
+ACTUAL ACCURACY : 95 %
+----------------------------
+I did not save the train and test set separately. My mistake. So later when in jupyter, I loaded the dataset and 
+made a test set, it had a lot of images (almost 90%) from the training set. And so it gave 98% accuracy (given below)
+on a lot of already seen images. But the validation accuracy on the last epoch was 95.2%. So that seems to be 
+best value to accept.
+
+
+Test Data shape: (915, 256, 256, 3)
+
+Latest model : training_1\cp_0070__0.9561.ckpt
+29/29 - 14s - loss: 0.1057 - accuracy: 0.9760
+Accuracy: 97.60%
+
+Y_train label distrib: (array([0, 1, 2, 3, 4]), array([1670, 1670, 1690, 1650, 1645], dtype=int64))
+Y_test label distrib: (array([0, 1, 2, 3, 4]), array([178, 178, 158, 198, 203], dtype=int64))
+Y_pred label distrib: (array([0, 1, 2, 3, 4], dtype=int64), array([167, 183, 164, 203, 198], dtype=int64))
+
+ACTUAL ACCURACY: 95%
+Accuracy: 0.9759562841530055
+
+Confusion matrix: 
+[[167   2   4   4   1]
+ [  0 177   1   0   0]
+ [  0   0 157   0   1]
+ [  0   0   2 196   0]
+ [  0   4   0   3 196]]
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       1.00      0.94      0.97       178
+           1       0.97      0.99      0.98       178
+           2       0.96      0.99      0.98       158
+           3       0.97      0.99      0.98       198
+           4       0.99      0.97      0.98       203
+
+    accuracy                           0.98       915
+   macro avg       0.98      0.98      0.98       915
+weighted avg       0.98      0.98      0.98       915
